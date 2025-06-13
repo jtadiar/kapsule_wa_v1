@@ -1,0 +1,22 @@
+# Netlify configuration file
+
+# Handle client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Build settings
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+# Set security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "script-src 'self' 'unsafe-eval'; object-src 'none'; base-uri 'self';"
